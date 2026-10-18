@@ -70,27 +70,23 @@ export default function StandupTimelineStudioDemo() {
     const mask = (name: string) => confidentialMask ? name.replace(/[a-zA-Z0-9]/g, '•') : name;
     
     if (outputFormat === 'slack') {
-      return `*Yesterday / Today Standup:*
-• *Authentication:* Completed PKCE desktop flow in `${mask('client-core-api')}` (verified 48 E2E test passes).
-• *Invoicing:* Resolved HSN rounding disparity in `${mask('billing-service')}` and opened PR #142 with unit test suites.
-• *Blockers:* None. Waiting on code review for PR #142.`;
+      return "*Yesterday / Today Standup:*\n" +
+        "• *Authentication:* Completed PKCE desktop flow in `" + mask('client-core-api') + "` (verified 48 E2E test passes).\n" +
+        "• *Invoicing:* Resolved HSN rounding disparity in `" + mask('billing-service') + "` and opened PR #142 with unit test suites.\n" +
+        "• *Blockers:* None. Waiting on code review for PR #142.";
     }
 
     if (outputFormat === 'markdown') {
-      return `### Standup Update
-**Completed:**
-- [x] Implemented PKCE callback handler in `${mask('client-core-api')}`
-- [x] Passed 48 end-to-end regression tests
-- [x] Fixed GST invoice rounding calculations in `${mask('billing-service')}`
-- [x] Submitted PR #142
-
-**Blockers:**
-- None`;
+      return "### Standup Update\n**Completed:**\n" +
+        "- [x] Implemented PKCE callback handler in `" + mask('client-core-api') + "`\n" +
+        "- [x] Passed 48 end-to-end regression tests\n" +
+        "- [x] Fixed GST invoice rounding calculations in `" + mask('billing-service') + "`\n" +
+        "- [x] Submitted PR #142\n\n**Blockers:**\n- None";
     }
 
-    return `• Authentication PKCE flow finished in ${mask('client-core-api')} with 48/48 tests
-• Invoicing HSN rounding bug fixed in ${mask('billing-service')}, PR #142 submitted
-• Next up: Code review verification & deployment rollout`;
+    return "• Authentication PKCE flow finished in " + mask('client-core-api') + " with 48/48 tests\n" +
+      "• Invoicing HSN rounding bug fixed in " + mask('billing-service') + ", PR #142 submitted\n" +
+      "• Next up: Code review verification & deployment rollout";
   };
 
   const handleCopy = () => {
